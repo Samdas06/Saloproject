@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salomé Calderón</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+ body 
+        { 
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+            background: linear-gradient( 0deg, #ffdde9,#FFB6C1 );
+            color: #F9F9FF;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+          
+        }
+        .container {
+            padding: 50px;
+            position: relative;
+            transform: translateY(-40px); 
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 0px;
+        }
+        /* Sobre */
+        .envelope {
+            position: relative;
+            width: 250px;
+            height: 180px;
+            background: #F0F0F0;
+            margin: 50px auto;
+            border-radius: 0px;
+            box-shadow: 0 0px 15px rgba(0,0,0,0);
+            box-shadow: 0.1px 0.1px 0.6px rgba(0,0,0,3);
+            cursor: pointer;
+            transition: transform 0.5s;
+            animation: float 2s infinite ease-in-out;
+            z-index: 2;
+        }
+        /* Solapa cerrada */
+        .flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 105px;
+            background: #F9F9FF;
+            border-radius: 2px;
+            clip-path: polygon(0% 0%, 50% 100%, 100% 0%);
+            transform-origin: top center;
+            transition: transform 0.5s ease-in-out;
+            z-index: 11;
+        }
+        .image-container {
+            position: absolute;
+            top: -85px;  
+            left: 0%;
+            transform: translateX(-50%);
+            transform: scale(-1);
+            z-index: -1;  
+            opacity: 0.3;
+        }
+        .image-container img {
+            width: 469px; 
+            height: auto;
+        }   
+        .images-container {
+            position: absolute;
+            top: 500px;  
+            left: 80%;
+            transform: translateX(-50%);
+            z-index: 12; 
+            opacity: 0.7;
+        }
+        .images-container img {
+            width: 200px; 
+            height: auto;
+        }    
+            
+        .imagess-container {
+            position: absolute;
+            top: 500px;  
+            left: -3%;
+            transform: translateX(-50%);
+            transform: scaleX(-1);
+            z-index: -1; 
+            opacity: 0.6;
+        }
+        .imagess-container img {
+            width: 140px; 
+            height: auto;
+           
+        }
+        .triangle-right {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            width: 0;
+            height: 0;
+            border-right: 251px solid #F0F0FF;
+            border-top: 180px solid transparent;
+            border-radius: 3px;
+            z-index: 11;
+        }
+        .triangle-curved {
+            position: absolute;
+            top: 60px;
+            left: 0px;
+            width: 0;
+            height: 0;
+            border-left: 120px solid transparent;
+            border-right: 130px solid transparent;
+            border-bottom: 120px solid #F5F5FF;
+            border-radius: 5px;
+            z-index: 11;
+        }
+        .inner-space {
+            position: absolute;
+            top: 0px;
+            left: 0;
+            width: 100%;
+            height: 180px;
+            border-radius: 4px;
+            background-color: #F0F0FF;
+            clip-path: polygon(0% 0%, 100% 100%, 0% 100%);
+            z-index: 11;
+        }
+        .letter {
+            position: absolute;
+            top: 0%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 180px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            padding: 15px;
+            box-sizing: border-box;
+            text-align: center;
+            z-index: 1;
+            opacity: 0;
+            transition: top 0.9s ease-in-out 0.5s, opacity 0.9s ease-in-out;
+        }
+        /* Pegatina (Emoji de corazón con punto) */
+        .sticker {
+            position: absolute;
+            top: 54%;
+            left: 49.2%;
+            transform: translate(-50%, -50%);
+            font-size: 2.1rem;
+            z-index: 12;
+            color: #F9F;
+            transition: transform 0.4s ease-out, opacity 0.5s ease-out;
+        }
+        /* Cuando el sobre es hover, la pegatina desaparece */
+        .envelope:hover .sticker {
+            transform: translate(-50%, -150%) scale(1.5); /* La pegatina se aleja */
+            opacity: 0;
+        }
+        .envelope:hover .letter {
+            top: -50px;
+            opacity: 1;
+            transition: top 0.4s ease-in-out 0.1s, opacity 0.3s ease-in-out 0.1s;
+            z-index: 11;
+        }
+        .envelope:hover .flap {
+            transform: rotateX(180deg);
+            z-index: 10;
+            animation-delay: 0s;
+        }
+        .envelope .letter {
+    top: 0%;
+    opacity: 0;
+    transition: top 0.1s ease-in-out 0.2s, opacity 0.1s ease-in-out;
+}
+            /* Cuando el mouse sale, la carta vuelve a su posición y después la solapa se cierra */
+            
+        .envelope .flap {
+            transition: transform 0.4s ease-in-out 0s; /* Retraso para esperar que la carta regrese */
+            
+       }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        .shadow {
+            position: absolute;
+            width: 200px;
+            height: 25px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            filter: blur(8px);
+            opacity: 0.9;
+            animation: shadowFloat 2s infinite ease-in-out;
+            z-index: 3; 
+        }
+        @keyframes shadowFloat {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+                opacity: 0.9;
+            }
+            50% {
+                transform: translateX(-50%) scale(0.95);
+                opacity: 0.7;
+            }
+        }
+        .footer {
+            margin-top: -8px;
+            font-size: 1.1rem;
+            color: #d633c;
+            z-index: 13;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-container">
+            <img src="https://static.vecteezy.com/system/resources/thumbnails/015/276/327/small_2x/hearts-border-frame-valentines-day-png.png" alt="CoraZON">
+            </div>
+            <div class="images-container">
+        <img src="https://img.lovepik.com/58pic/32/47/90/02758PIC6x3824YV7v1mr_PIC2018.png">
+        </div>
+        <div class="imagess-container">
+        <img src="https://img.lovepik.com/58pic/32/47/90/02758PIC6x3824YV7v1mr_PIC2018.png">
+        </div>
+        <h1> ¡Feliz Día, Linda! </h1>
+        <p>Que el amor y la felicidad te acompañen siempre.</p>
+        <div class="envelope">
+            <div class="flap"></div>
+            <div class="letter">Tu mensaje aquí 💌</div>
+            <div class="inner-space"></div>
+            <div class="triangle-right"></div>
+            <div class="triangle-curved"></div>
+            <div class="flap"></div>
+        
+            <div class="sticker">🩷</div> <!-- Emoji de corazón con punto -->
+        </div>
+        
+        <div class="shadow"></div>
+        <div class="footer">Hecho con amor, para ti... </div>
+    </div>
+</body>
+</html>
